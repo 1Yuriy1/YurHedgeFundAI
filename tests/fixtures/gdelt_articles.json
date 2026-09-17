@@ -1,0 +1,24 @@
+{
+  "articles": [
+    {
+      "url": "https://example.com/fed-signals-rate-path",
+      "url_mobile": "",
+      "title": "Fed signals slower rate path as inflation cools",
+      "seendate": "20260917T120000Z",
+      "socialimage": "",
+      "domain": "example.com",
+      "language": "english",
+      "sourcecountry": "united states"
+    },
+    {
+      "url": "https://news.example.org/markets/yields",
+      "url_mobile": "",
+      "title": "Treasury yields steady before Fed meeting",
+      "seendate": "20260917T090000Z",
+      "socialimage": "",
+      "domain": "news.example.org",
+      "language": "english",
+      "sourcecountry": "united states"
+    }
+  ]
+}

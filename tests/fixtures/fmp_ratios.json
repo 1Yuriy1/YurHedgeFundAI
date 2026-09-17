@@ -1,0 +1,4 @@
+[
+  {"symbol": "AAPL", "date": "2025-09-27", "currentRatio": 0.87, "debtEquity": 1.87, "grossProfitMargin": 0.46},
+  {"symbol": "AAPL", "date": "2024-09-28", "currentRatio": 0.92, "debtEquity": 1.73, "grossProfitMargin": 0.46}
+]
