@@ -115,6 +115,9 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+psycopg://yhf:yhf@localhost:5432/yhf"
     redis_url: str = "redis://localhost:6379/0"
 
+    # Where the daily brief is written (output/briefs/YYYY-MM-DD.md)
+    briefs_dir: str = "output/briefs"
+
     # Model IDs per role (Anthropic)
     anthropic_model_pm: str = "claude-opus-5"
     anthropic_model_analyst: str = "claude-sonnet-5"
