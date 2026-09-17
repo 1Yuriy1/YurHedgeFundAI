@@ -1,0 +1,26 @@
+[
+  {
+    "agent": "macro_rates",
+    "tier": 2,
+    "ticker": null,
+    "signal": "bearish",
+    "strength": 0.7,
+    "confidence": 0.65,
+    "horizon": "1-3 months",
+    "red_flag": false,
+    "thesis": "Yield curve at the inversion threshold: latest DGS2 4.1 on 2026-09-01 vs DGS10 4.1 gives a 2s10s spread of 0.0 — at or below zero is the regime-shift trigger, and unemployment is steady at 4.1.",
+    "evidence": [
+      {
+        "source": "FRED DGS2",
+        "url": "https://fred.stlouisfed.org/series/DGS2",
+        "excerpt": "2026-09-01: 4.1"
+      },
+      {
+        "source": "FRED UNRATE",
+        "url": "https://fred.stlouisfed.org/series/UNRATE",
+        "excerpt": "2026-09-01: 4.1"
+      }
+    ],
+    "risks": ["A rapid Fed pivot would re-steepen the curve and void this read."]
+  }
+]

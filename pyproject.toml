@@ -23,9 +23,18 @@ dev = [
     "respx>=0.21",
     "ruff>=0.6",
 ]
+# Optional runtime fallback for the Fundamentals analyst (agents/research/
+# fundamentals.py): used only when FMP_API_KEY is unset. Tests stub it, so
+# it is never needed for offline CI.
+yfinance = ["yfinance>=0.2"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["core", "agents", "data", "pipelines"]
+
+# Versioned prompts are data, not a package — force-include so an installed
+# wheel resolves agents/base.py's PROMPTS_DIR (site-packages/prompts).
+[tool.hatch.build.targets.wheel.force-include]
+"prompts" = "prompts"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

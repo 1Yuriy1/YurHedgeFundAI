@@ -1,0 +1,21 @@
+[
+  {
+    "agent": "sec_filings",
+    "tier": 3,
+    "ticker": "AAPL",
+    "signal": "neutral",
+    "strength": 0.3,
+    "confidence": 0.6,
+    "horizon": "1-3 months",
+    "red_flag": false,
+    "thesis": "Routine quarterly report: the 10-Q filed 2026-08-01 (period 2026-06-28) carries no adverse language in the provided material.",
+    "evidence": [
+      {
+        "source": "Form 10-Q",
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000105/aapl-20260628.htm",
+        "excerpt": "Quarterly report for the quarterly period ended June 28, 2026."
+      }
+    ],
+    "risks": ["Red-flag language elsewhere in the document text would change this read."]
+  }
+]
