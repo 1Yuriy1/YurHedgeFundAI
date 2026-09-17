@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: quality (ruff, mypy, pytest)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install package with dev dependencies
+        run: pip install -e '.[dev]'
+
+      - name: Validate compose config
+        run: docker compose config --quiet
+
+      # Fail-fast ordering per the spec's CI design: lint -> types -> tests.
+      - name: Ruff lint
+        run: ruff check .
+      - name: Ruff format check
+        run: ruff format --check .
+      - name: Mypy (strict)
+        run: mypy .
+      - name: Pytest (offline — fixtures + stub LLM, no keys needed)
+        run: pytest
+
+  security:
+    name: security (pip-audit — non-blocking initially)
+    runs-on: ubuntu-latest
+    # Non-blocking initially; flip to blocking after the first release
+    # (spec: CI design).
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install package and pip-audit
+        run: |
+          pip install -e '.[dev]'
+          pip install pip-audit
+
+      - name: Audit installed dependencies
+        run: pip-audit
