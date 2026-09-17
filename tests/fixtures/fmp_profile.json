@@ -1,0 +1,10 @@
+[
+  {
+    "symbol": "AAPL",
+    "companyName": "Apple Inc.",
+    "price": 210.5,
+    "marketCap": 3200000000000,
+    "sector": "Technology",
+    "industry": "Consumer Electronics"
+  }
+]

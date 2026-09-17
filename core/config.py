@@ -24,6 +24,18 @@ DEFAULT_UNIVERSE: Final[tuple[str, ...]] = (
     "UNH",
 )
 
+# Default macro series for the Macro & Rates analyst (spec's connector table).
+DEFAULT_FRED_SERIES: Final[tuple[str, ...]] = (
+    "UNRATE",
+    "FEDFUNDS",
+    "DGS10",
+    "DGS2",
+    "T10Y2Y",
+    "BAMLH0A0HYM2",
+    "CPIAUCSL",
+    "PCEPI",
+)
+
 
 class Settings(BaseSettings):
     """All platform settings, read from the environment.
@@ -42,6 +54,9 @@ class Settings(BaseSettings):
     # Data universe (overridable via UNIVERSE="AAPL,MSFT,...")
     universe: list[str] = Field(default_factory=lambda: list(DEFAULT_UNIVERSE))
 
+    # FRED series the Macro & Rates analyst watches (overridable via FRED_SERIES="A,B,...")
+    fred_series: list[str] = Field(default_factory=lambda: list(DEFAULT_FRED_SERIES))
+
     # Credentials and service endpoints
     anthropic_api_key: str | None = None
     fred_api_key: str | None = None
@@ -54,10 +69,10 @@ class Settings(BaseSettings):
     anthropic_model_pm: str = "claude-opus-5"
     anthropic_model_analyst: str = "claude-sonnet-5"
 
-    @field_validator("universe", mode="before")
+    @field_validator("universe", "fred_series", mode="before")
     @classmethod
     def _split_csv(cls, value: object) -> object:
-        """Accept UNIVERSE as a comma-separated string (env) or a list (programmatic)."""
+        """Accept UNIVERSE/FRED_SERIES as comma-separated strings (env) or lists."""
         if isinstance(value, str):
             return [part.strip().upper() for part in value.split(",") if part.strip()]
         return value

@@ -1,0 +1,15 @@
+{
+  "cik": "320193",
+  "entityType": "operating",
+  "name": "Apple Inc.",
+  "tickers": ["AAPL"],
+  "filings": {
+    "recent": {
+      "accessionNumber": ["0000320193-26-000105", "0000320193-26-000098"],
+      "filingDate": ["2026-08-01", "2026-05-02"],
+      "reportDate": ["2026-06-28", "2026-03-29"],
+      "form": ["10-Q", "10-Q"],
+      "primaryDocument": ["aapl-20260628.htm", "aapl-20260329.htm"]
+    }
+  }
+}

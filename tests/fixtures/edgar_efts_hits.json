@@ -1,0 +1,31 @@
+{
+  "hits": {
+    "total": {"value": 2},
+    "hits": [
+      {
+        "_id": "0000320193-26-000105:aapl-20260628.htm",
+        "_score": 1.5,
+        "_source": {
+          "ciks": ["0000320193"],
+          "display_names": ["Apple Inc."],
+          "form": "10-Q",
+          "file_date": "2026-08-01",
+          "adsh": "0000320193-26-000105",
+          "file_type": "10-Q"
+        }
+      },
+      {
+        "_id": "0000320193-26-000098:aapl-20260329.htm",
+        "_score": 0.8,
+        "_source": {
+          "ciks": ["0000320193"],
+          "display_names": ["Apple Inc."],
+          "form": "10-K",
+          "file_date": "2026-05-02",
+          "adsh": "0000320193-26-000098",
+          "file_type": "10-K"
+        }
+      }
+    ]
+  }
+}
