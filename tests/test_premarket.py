@@ -17,9 +17,9 @@ import pytest
 import respx
 from agents.base import BaseAgent
 from agents.leadership.portfolio_manager import PortfolioManagerAgent
-from agents.research.sec_filings import filing_document_url
 from core.config import Settings
 from core.scoring import ScoreResult, aggregate
+from data.connectors.edgar import filing_document_url
 from data.connectors.fmp import FMP_BASE_URL
 from data.connectors.fred import FRED_BASE_URL
 from fakeredis import FakeRedis
@@ -49,7 +49,6 @@ from tests.test_connectors.conftest import FakeClock, load_fixture_json, make_se
 
 FRED_URL = f"{FRED_BASE_URL}/series/observations"
 EFTS_URL = "https://efts.sec.gov/LATEST/search-index"
-MSFT_FILING_URL = filing_document_url("0000789019", "0000789019-26-000201", "msft-20260630.htm")
 RUN_DATE = "2026-09-17"
 RUN_TS = f"{RUN_DATE}T10:00:00Z"
 PM_SYNTHESIS = (
@@ -95,6 +94,10 @@ def msft_efts_hit() -> dict[str, Any]:
             "file_type": "10-Q",
         },
     }
+
+
+# Built by the same helper the SEC agent uses to turn filings into evidence URLs.
+MSFT_FILING_URL = filing_document_url("0000789019", "0000789019-26-000201", "msft-20260630.htm")
 
 
 def msft_sec_variant() -> list[dict[str, Any]]:
@@ -186,7 +189,8 @@ def run_offline(
         universe=UNIVERSE,
         analysts=build_analysts(settings, clock),
         pm=PortfolioManagerAgent(llm=StubLLM(PM_SYNTHESIS), settings=settings),
-        repo=repo,  # type: ignore[arg-type] — the in-memory fake satisfies the protocol
+        # The in-memory fake satisfies the SignalRepository protocol at runtime.
+        repo=repo,
         briefs_dir=tmp_path / "briefs",
         run_id="test-run",
         run_date=RUN_DATE,
@@ -320,7 +324,7 @@ def graph_edges() -> list[tuple[str, str]]:
         universe=UNIVERSE,
         analysts=build_analysts(settings, FakeClock()),
         pm=PortfolioManagerAgent(llm=StubLLM("synthesis"), settings=settings),
-        repo=InMemorySignalRepository(),  # type: ignore[arg-type]
+        repo=InMemorySignalRepository(),
         briefs_dir=Path("/tmp"),
         run_id="edge-probe",
         run_date=RUN_DATE,

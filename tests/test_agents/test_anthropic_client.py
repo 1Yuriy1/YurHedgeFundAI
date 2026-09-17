@@ -45,7 +45,7 @@ def test_adapter_is_an_llmclient() -> None:
 def test_adapter_forwards_the_protocol_kwargs() -> None:
     adapter, messages = make_adapter()
 
-    response = adapter.messages.create(  # type: ignore[union-attr]
+    response = adapter.messages.create(
         model="claude-opus-test-id",
         max_tokens=1024,
         system="system prompt",
