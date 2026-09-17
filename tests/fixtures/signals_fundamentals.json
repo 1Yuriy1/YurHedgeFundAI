@@ -1,0 +1,26 @@
+[
+  {
+    "agent": "fundamentals",
+    "tier": 4,
+    "ticker": "AAPL",
+    "signal": "neutral",
+    "strength": 0.4,
+    "confidence": 0.9,
+    "horizon": "6-12 months",
+    "red_flag": false,
+    "thesis": "Steady scorecard: revenue 416160000000 (FY2025) vs 391035000000 (FY2024), gross margin flat at 0.46, current ratio 0.87 vs 0.92 — no material revision.",
+    "evidence": [
+      {
+        "source": "FMP income statement",
+        "url": "https://financialmodelingprep.com/api/v3/income-statement/AAPL",
+        "excerpt": "revenue: 416160000000 (2025-09-27), 391035000000 (2024-09-28)"
+      },
+      {
+        "source": "FMP ratios",
+        "url": "https://financialmodelingprep.com/api/v3/ratios/AAPL",
+        "excerpt": "grossProfitMargin: 0.46 (2025-09-27), currentRatio: 0.87 (2025-09-27)"
+      }
+    ],
+    "risks": ["A margin swing in the next filing would move this scorecard."]
+  }
+]
